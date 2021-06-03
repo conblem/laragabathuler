@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Children } from "react";
+import Link from "next/link";
 import Thumbnail from "../components/Thumbnail";
 import styles from "../styles/Home.module.scss";
 
@@ -16,11 +16,12 @@ export async function getStaticProps() {
 
 export default function Home({ projects }) {
   const thumbnails = projects.map((project) => (
-    <Thumbnail
-      key={project}
-      hover={project}
-      src="https://raw.githubusercontent.com/conblem/lara/master/src/assets/image1.jpeg?token=AEXPEIITSDQ4IH7DAHQ5ZZDAYHGV2"
-    ></Thumbnail>
+    <Link key={project} href={`/projects/${project}`}>
+      <Thumbnail
+        hover={project}
+        src="https://raw.githubusercontent.com/conblem/lara/master/src/assets/image1.jpeg?token=AEXPEIITSDQ4IH7DAHQ5ZZDAYHGV2"
+      ></Thumbnail>
+    </Link>
   ));
 
   return (
