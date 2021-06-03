@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 
 import { MDXRemote } from "next-mdx-remote";
 
+import Thumbnail from "../../components/Thumbnail";
 import { getAllProjectIds, getProject } from "../../lib/projects";
 
 export async function getStaticPaths() {
@@ -27,7 +28,7 @@ export async function getStaticProps({ params }) {
   };
 }
 
-const defaultComponents = {};
+const defaultComponents = { Thumbnail };
 const Lottie = dynamic(() => import("../../components/Lottie"));
 
 export default function Project({
@@ -40,11 +41,16 @@ export default function Project({
     ...defaultComponents,
     Lottie: componentNames.includes("Lottie") ? Lottie : null,
   };
+  console.log(components);
 
   return (
-    <div>
-      <MDXRemote {...description} />
-      <MDXRemote {...summary} />
+    <div className="columns is-multiline is-desktop">
+      <div className="column is-half-desktop">
+        <MDXRemote {...description} />
+      </div>
+      <div className="column is-half-desktop">
+        <MDXRemote {...summary} />
+      </div>
       <MDXRemote {...source} components={components} />
     </div>
   );

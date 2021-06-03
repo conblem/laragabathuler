@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import styles from "../styles/Thumbnail.module.scss";
 import Content from "./Content";
 
 const Thumbnail = React.forwardRef(

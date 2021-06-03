@@ -7,9 +7,11 @@ const Content = React.forwardRef(
       ? "column is-full-desktop"
       : "column is-half-desktop";
 
+    const content = full ? `${styles.content} ${styles.full}` : styles.content;
+
     return (
       <a className={className} ref={ref} onClick={onClick} href={href}>
-        <div className={styles.content}>
+        <div className={content}>
           <div className={styles.cover}>{children}</div>
           {hover && (
             <div className={`${styles.hover} ${styles.cover}`}>{hover}</div>

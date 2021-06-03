@@ -1,10 +1,19 @@
+@use "sass:math";
+
+$sixteen-by-nine: math.div(9, 16);
+$half-sixteen-by-nine: math.div($sixteen-by-nine, 2);
+
 .content {
   overflow: hidden;
   position: relative;
   height: 0;
   width: 100%;
-  padding-top: calc(9 / 16 * 100%);
+  padding-top: calc(#{$half-sixteen-by-nine} * 100%);
   border-radius: 15px;
+}
+
+.full {
+  padding-top: calc(#{$sixteen-by-nine});
 }
 
 .hover {
