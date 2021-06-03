@@ -41,7 +41,6 @@ export default function Project({
     ...defaultComponents,
     Lottie: componentNames.includes("Lottie") ? Lottie : null,
   };
-  console.log(components);
 
   return (
     <div className="columns is-multiline is-desktop">
