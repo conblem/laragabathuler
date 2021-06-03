@@ -17,10 +17,7 @@ export async function getStaticProps() {
 export default function Home({ projects }) {
   const thumbnails = projects.map((project) => (
     <Link key={project} href={`/projects/${project}`}>
-      <Thumbnail
-        hover={project}
-        src="https://raw.githubusercontent.com/conblem/lara/master/src/assets/image1.jpeg?token=AEXPEIITSDQ4IH7DAHQ5ZZDAYHGV2"
-      ></Thumbnail>
+      <Thumbnail hover={project} src="/images/Stampa_01.jpg"></Thumbnail>
     </Link>
   ));
 
