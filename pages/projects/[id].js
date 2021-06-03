@@ -1,15 +1,11 @@
 import dynamic from "next/dynamic";
 
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 
-import { getAllProjectIds } from "../../lib/projects";
+import { getAllProjectIds, getProject } from "../../lib/projects";
 
 export async function getStaticPaths() {
-  const projects = getAllProjectIds();
+  const projects = await getAllProjectIds();
   const paths = projects.map((id) => {
     return {
       params: {
@@ -25,29 +21,21 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  let fileName = path.join(process.cwd(), `content/projects/${params.id}.mdx`);
-  let file = fs.readFileSync(fileName);
-
-  let { content, data } = matter(file);
-
-  const componentNames = [/<Lottie/.test(content) ? "Lottie" : null].filter(
-    Boolean
-  );
-
-  const source = await serialize(content, { scope: data });
-
+  let project = await getProject(params.id);
   return {
-    props: {
-      source,
-      componentNames,
-    },
+    props: project,
   };
 }
 
 const defaultComponents = {};
 const Lottie = dynamic(() => import("../../components/Lottie"));
 
-export default function Project({ source, componentNames }) {
+export default function Project({
+  source,
+  summary,
+  description,
+  componentNames,
+}) {
   const components = {
     ...defaultComponents,
     Lottie: componentNames.includes("Lottie") ? Lottie : null,
@@ -55,6 +43,8 @@ export default function Project({ source, componentNames }) {
 
   return (
     <div>
+      <MDXRemote {...description} />
+      <MDXRemote {...summary} />
       <MDXRemote {...source} components={components} />
     </div>
   );

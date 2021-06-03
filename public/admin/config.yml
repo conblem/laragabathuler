@@ -49,5 +49,8 @@ collections:
         name: "summary"
         widget: "markdown"
       - label: "Beschreibung"
+        name: "description"
+        widget: "markdown"
+      - label: "Content"
         name: "body"
         widget: "markdown"
