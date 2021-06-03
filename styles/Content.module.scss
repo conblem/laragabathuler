@@ -1,7 +1,7 @@
 @use "sass:math";
 
 $sixteen-by-nine: math.div(9, 16);
-$half-sixteen-by-nine: math.div($sixteen-by-nine, 2);
+$half-sixteen-by-nine: math.mul($sixteen-by-nine, 2);
 
 .content {
   overflow: hidden;
