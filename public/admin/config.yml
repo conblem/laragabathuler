@@ -1,7 +1,7 @@
 backend:
   name: github
-  repo: conblem/laragabathuler # Path to your Github/Gitlab repository
-  branch: main # Branch to update
+  repo: conblem/laragabathuler
+  branch: main
   base_url: https://www.laragabathuler.ch/
   auth_endpoint: api/auth
 media_folder: public/images
@@ -9,54 +9,45 @@ public_folder: /images
 publish_mode: editorial_workflow
 
 collections:
-  - name: "posts"
-    label: "Posts"
-    folder: "content/posts/"
+  - label: "Seiten"
+    name: "pages"
+    files:
+      - label: "About"
+        name: "about"
+        file: "content/about.mdx"
+        fields:
+          - label: "Titel"
+            name: "title"
+            widget: "string"
+          - label: "Body"
+            name: "body"
+            widget: "markdown"
+
+  - label: "Projekte"
+    name: "projects"
+    folder: "content/projects/"
     extension: "mdx"
     format: "frontmatter"
     create: true
-    slug: "{{slug}}"
+    slug: "{{id}}"
     identifier_field: slug
     summary: "{{title}}"
     fields:
-      - label: "Slug"
-        name: "slug"
+      - label: "ID"
+        name: "id"
         widget: "string"
-      - label: "Title"
+      - label: "Titel"
         name: "title"
         widget: "string"
-      - label: "Publish Date"
-        name: "date"
-        widget: "datetime"
-        format: "YYYY-MM-DD"
-        dateFormat: "YYYY-MM-DD"
-        timeFormat: false
-      - label: Author
-        name: "author"
-        widget: relation
-        collection: "meta"
-        file: "authors"
-        searchFields:
-          - "authors.*.name"
-        displayFields:
-          - "authors.*.name"
-        valueField: "authors.*.slug"
-      - label: Tags
-        label_singular: "Tag"
-        name: "tags"
-        widget: list
-        summary: "{{fields.tag}}"
-        field:
-          label: Tag
-          name: tag
-          widget: relation
-          collection: "meta"
-          file: "tags"
-          searchFields:
-            - "tags.*.name"
-          displayFields:
-            - "tags.*.name"
-          valueField: "tags.*.slug"
-      - label: "Body"
-        name: "body"
+      - label: "Cover"
+        name: "cover"
+        widget: "image"
+      - label: "Startseiten Hover"
+        name: "hover"
+        widget: "string"
+      - label: "Beschreibung"
+        name: "description"
+        widget: "markdown"
+      - label: "Zusammenfassung"
+        name: "summary"
         widget: "markdown"
