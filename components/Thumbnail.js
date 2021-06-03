@@ -4,7 +4,7 @@ import styles from "../styles/Thumbnail.module.scss";
 import Content from "./Content";
 
 const Thumbnail = React.forwardRef(
-  ({ src, full, hover, onClick, href }, ref) => {
+  ({ alt, src, full, hover, onClick, href }, ref) => {
     return (
       <Content
         full={full}
@@ -13,7 +13,7 @@ const Thumbnail = React.forwardRef(
         onClick={onClick}
         href={href}
       >
-        <Image src={src} layout="fill" objectFit="cover" />
+        <Image alt={alt} src={src} layout="fill" objectFit="cover" />
       </Content>
     );
   }
