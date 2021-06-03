@@ -37,6 +37,7 @@ export async function getStaticProps({ params }) {
 }
 
 const defaultComponents = {};
+const Lottie = dynamic(() => import("../../components/Lottie"));
 
 export default function Project({ source, componentNames }) {
   const components = {

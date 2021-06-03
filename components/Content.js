@@ -1,10 +1,15 @@
-import styles from "./Content.module.css";
+import styles from "./Content.module.scss";
 
-export default function Content({ hover, children }) {
+export default function Content({ hover, children, full }) {
+  let className = `${styles.content} column `;
+  className += full ? "is-full-desktop" : "is-half-desktop";
+
   return (
-    <div class={styles.content}>
-      <div class={style.cover}>{children}</div>
-      {hover && <div class={`${style.hover} ${style.cover}`}>{hover}</div>}
+    <div className={className}>
+      <div className={styles.cover}>{children}</div>
+      {hover && (
+        <div className={`${styles.hover} ${styles.cover}`}>{hover}</div>
+      )}
     </div>
   );
 }
