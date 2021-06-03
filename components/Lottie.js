@@ -8,7 +8,7 @@ export default function Lottie({ src, full }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      let res = await fetch(`/${src}`);
+      let res = await fetch(src);
       let data = await res.json();
       setData(data);
     };
