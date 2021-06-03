@@ -1,0 +1,27 @@
+.content {
+  overflow: hidden;
+  position: relative;
+  height: 0;
+  width: 100%;
+  padding-top: calc(9 / 16 * 100%);
+  border-radius: 15px;
+}
+
+.hover {
+  display: none;
+}
+
+.content:hover .hover {
+  display: initial;
+  font-size: 3rem;
+  color: black;
+  padding: 40px;
+}
+
+.cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
