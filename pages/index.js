@@ -6,7 +6,7 @@ import styles from "../styles/Home.module.scss";
 import { getAllProjectIds } from "../lib/projects";
 
 export async function getStaticProps() {
-  let projects = getAllProjectIds();
+  let projects = await getAllProjectIds();
   return {
     props: {
       projects,
