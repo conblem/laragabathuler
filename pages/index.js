@@ -3,10 +3,10 @@ import Link from "next/link";
 import Thumbnail from "../components/Thumbnail";
 import styles from "../styles/Home.module.scss";
 
-import { getAllProjectIds } from "../lib/projects";
+import { getProjectIds } from "../lib/projects";
 
 export async function getStaticProps() {
-  let projects = await getAllProjectIds();
+  let projects = await getProjectIds();
   return {
     props: {
       projects,

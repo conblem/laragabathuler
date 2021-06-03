@@ -3,10 +3,10 @@ import dynamic from "next/dynamic";
 import { MDXRemote } from "next-mdx-remote";
 
 import Thumbnail from "../../components/Thumbnail";
-import { getAllProjectIds, getProject } from "../../lib/projects";
+import { getProjectIds, getProject } from "../../lib/projects";
 
 export async function getStaticPaths() {
-  const projects = await getAllProjectIds();
+  const projects = await getProjectIds();
   const paths = projects.map((id) => {
     return {
       params: {
