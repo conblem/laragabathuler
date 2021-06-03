@@ -9,7 +9,15 @@ import { MDXRemote } from "next-mdx-remote";
 import { getAllProjectIds } from "../../lib/projects";
 
 export async function getStaticPaths() {
-  const paths = getAllProjectIds();
+  const projects = getAllProjectIds();
+  const paths = projects.map((id) => {
+    return {
+      params: {
+        id,
+      },
+    };
+  });
+
   return {
     paths,
     fallback: false,
