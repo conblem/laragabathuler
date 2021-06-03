@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { MDXRemote } from "next-mdx-remote";
 
+import styles from "../../styles/Projects.module.scss";
 import Thumbnail from "../../components/Thumbnail";
 import { getProjectIds, getProject } from "../../lib/projects";
 
@@ -54,8 +55,11 @@ export default function Project({
         <MDXRemote {...summary} />
       </div>
       <MDXRemote {...source} components={components} />
-      <Link href={before}>Before</Link>
-      <Link href={after}>After</Link>
+
+      <div className={`${styles.beforeafter} column is-full`}>
+        <Link href={`/projects/${before}`}>← Before</Link>
+        <Link href={`/projects/${after}`}>After →</Link>
+      </div>
     </div>
   );
 }
