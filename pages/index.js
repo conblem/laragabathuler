@@ -3,10 +3,10 @@ import Link from "next/link";
 import Thumbnail from "../components/Thumbnail";
 import styles from "../styles/Home.module.scss";
 
-import { getProjectIds } from "../lib/projects";
+import { getProjects } from "../lib/projects";
 
 export async function getStaticProps() {
-  let projects = await getProjectIds();
+  let projects = await getProjects();
   return {
     props: {
       projects,
@@ -15,9 +15,9 @@ export async function getStaticProps() {
 }
 
 export default function Home({ projects }) {
-  const thumbnails = projects.map((project) => (
-    <Link key={project} href={`/projects/${project}`}>
-      <Thumbnail hover={project} src="/images/Stampa_01.jpg"></Thumbnail>
+  const thumbnails = projects.map(({ id, cover, hover, title }) => (
+    <Link key={id} href={`/projects/${id}`}>
+      <Thumbnail hover={hover} src={cover} alt={title}></Thumbnail>
     </Link>
   ));
 
