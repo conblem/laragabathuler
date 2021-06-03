@@ -9,7 +9,7 @@ export async function getStaticProps() {
   let projects = await getProjects();
   return {
     props: {
-      projects,
+      projects: projects.map(({ data }) => data),
     },
   };
 }

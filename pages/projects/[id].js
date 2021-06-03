@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import Link from "next/link";
 
 import { MDXRemote } from "next-mdx-remote";
 
@@ -35,6 +36,8 @@ export default function Project({
   source,
   summary,
   description,
+  before,
+  after,
   componentNames,
 }) {
   const components = {
@@ -51,6 +54,8 @@ export default function Project({
         <MDXRemote {...summary} />
       </div>
       <MDXRemote {...source} components={components} />
+      <Link href={before}>Before</Link>
+      <Link href={after}>After</Link>
     </div>
   );
 }
