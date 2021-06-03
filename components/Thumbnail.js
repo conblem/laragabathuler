@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import styles from "../styles/Thumbnail.module.scss";
 import Content from "./Content";
@@ -12,7 +13,7 @@ const Thumbnail = React.forwardRef(
         onClick={onClick}
         href={href}
       >
-        <img className={styles.image} src={src} />
+        <Image src={src} layout="fill" objectFit="cover" />
       </Content>
     );
   }
