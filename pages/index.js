@@ -16,7 +16,7 @@ export async function getStaticProps() {
 
 export default function Home({ projects }) {
   const thumbnails = projects.map(({ id, cover, hover, title }) => (
-    <Link key={id} href={`/projects/${id}`}>
+    <Link key={id} href={`/projects/${id}`} passHref>
       <Thumbnail hover={hover} src={cover} alt={title}></Thumbnail>
     </Link>
   ));

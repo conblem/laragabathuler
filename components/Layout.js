@@ -14,8 +14,12 @@ export default function Layout({ children }) {
       </Head>
       <header className={styles.header}>
         <nav>
-          <Link href="/">test</Link>
-          <Link href="/about">About</Link>
+          <Link href="/">
+            <a>test</a>
+          </Link>
+          <Link href="/about">
+            <a>About</a>
+          </Link>
         </nav>
       </header>
       <div className={styles.children}>{children}</div>
