@@ -17,9 +17,9 @@ export default function Layout({ children }) {
         <meta name="description" content="Lara Gabathuler" />
         <link rel="icon" href="/favicon.ico" />
         <link
+          href="https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap"
           rel="stylesheet"
-          href="https://use.typekit.net/qoh8unn.css"
-        ></link>
+        />
       </Head>
       <header className={styles.header}>
         <nav>
