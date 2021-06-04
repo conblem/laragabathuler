@@ -1,8 +1,9 @@
 import Head from "next/head";
 import Link from "next/link";
-import Thumbnail from "../components/Thumbnail";
+import Image from "next/image";
 import styles from "../styles/Home.module.scss";
 
+import Content from "../components/Content";
 import { getProjects } from "../lib/projects";
 
 export async function getStaticProps() {
@@ -16,8 +17,12 @@ export async function getStaticProps() {
 
 export default function Home({ projects }) {
   const thumbnails = projects.map(({ id, cover, hover, title }) => (
-    <Link key={id} href={`/projects/${id}`} passHref>
-      <Thumbnail hover={hover} src={cover} alt={title}></Thumbnail>
+    <Link key={id} href={`/projects/${id}`}>
+      <a className="column is-half-desktop">
+        <Content hover={hover} aspectX="16" aspectY="9">
+          <Image alt={title} src={cover} layout="fill" objectFit="cover" />
+        </Content>
+      </a>
     </Link>
   ));
 

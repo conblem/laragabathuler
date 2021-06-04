@@ -5,7 +5,7 @@ import Head from "next/head";
 import { MDXRemote } from "next-mdx-remote";
 
 import styles from "../../styles/Projects.module.scss";
-import Thumbnail from "../../components/Thumbnail";
+import Image from "../../components/Image";
 import { getProjectIds, getProject } from "../../lib/projects";
 import East from "../../public/east.svg";
 import West from "../../public/west.svg";
@@ -33,7 +33,7 @@ export async function getStaticProps({ params }) {
   };
 }
 
-const defaultComponents = { Thumbnail };
+const defaultComponents = { Image };
 const Lottie = dynamic(() => import("../../components/Lottie"));
 
 export default function Project({
