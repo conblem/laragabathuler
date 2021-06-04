@@ -61,12 +61,12 @@ export default function Project({
       <div className={`${styles.beforeafter} column is-full`}>
         <Link href={`/projects/${before}`}>
           <a>
-            <West /> Before
+            <West /> Previous Project
           </a>
         </Link>
         <Link href={`/projects/${after}`}>
           <a>
-            After <East />
+            Next Project <East />
           </a>
         </Link>
       </div>
