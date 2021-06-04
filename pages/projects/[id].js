@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import Head from "next/head";
 
 import { MDXRemote } from "next-mdx-remote";
 
@@ -42,6 +43,7 @@ export default function Project({
   before,
   after,
   componentNames,
+  title,
 }) {
   const components = {
     ...defaultComponents,
@@ -50,6 +52,9 @@ export default function Project({
 
   return (
     <div className="columns is-multiline is-desktop">
+      <Head>
+        <title>{title}</title>
+      </Head>
       <div className="column is-half-desktop">
         <MDXRemote {...description} />
       </div>
