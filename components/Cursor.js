@@ -1,5 +1,5 @@
 import styles from "../styles/Cursor.module.scss";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 
 export default function Cursor() {
   const animationFrame = useRef();
