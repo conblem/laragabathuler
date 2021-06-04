@@ -1,7 +1,14 @@
-import styles from "../styles/Cursor.module.scss";
 import { useRef, useEffect } from "react";
+import { useMediaPredicate } from "react-media-hook";
 
-export default function Cursor() {
+import styles from "../styles/Cursor.module.scss";
+
+export default function CursorConditional() {
+  const isFinePointer = useMediaPredicate("(pointer: fine");
+  return isFinePointer && <Cursor />;
+}
+
+function Cursor() {
   const animationFrame = useRef();
   const ref = useRef();
 

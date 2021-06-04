@@ -5,14 +5,15 @@
 
 html,
 body {
+  color: black;
   padding: 0;
   margin: 0;
-  font-family: acumin-pro-wide;
+  font-family: "acumin-pro-wide";
 }
 
 a {
-  color: inherit;
   text-decoration: none;
+  color: inherit;
 }
 
 // fix cursor
