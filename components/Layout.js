@@ -1,12 +1,18 @@
 import Link from "next/link";
 import Head from "next/head";
+import dynamic from "next/dynamic";
 
 import NorthEast from "../public/northEast.svg";
 import styles from "../styles/Layout.module.scss";
 
+const Cursor = dynamic(() => import("./Cursor"), {
+  ssr: false,
+});
+
 export default function Layout({ children }) {
   return (
     <div className={styles.layout}>
+      <Cursor />
       <Head>
         <meta name="description" content="Lara Gabathuler" />
         <link rel="icon" href="/favicon.ico" />

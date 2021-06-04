@@ -1,0 +1,13 @@
+.cursor {
+  position: fixed;
+  border: 25px solid white;
+  border-radius: 100px;
+  height: 50px;
+  width: 50px;
+  z-index: 1000;
+  mix-blend-mode: difference;
+}
+
+.hide {
+  display: none;
+}

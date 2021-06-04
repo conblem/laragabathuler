@@ -16,6 +16,17 @@ a {
   text-decoration: none;
 }
 
+// fix cursor
+
 * {
   box-sizing: border-box;
+  cursor: none;
+}
+
+body {
+  cursor: auto;
+}
+
+.hide-original-cursor {
+  cursor: none;
 }
