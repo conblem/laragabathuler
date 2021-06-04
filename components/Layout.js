@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Head from "next/head";
 
+import NorthEast from "../public/northEast.svg";
 import styles from "../styles/Layout.module.scss";
 
 export default function Layout({ children }) {
@@ -20,7 +21,7 @@ export default function Layout({ children }) {
       <div className={styles.children}>{children}</div>
       <footer className={styles.footer}>
         <a className={styles.mail} href="mailto:larataba@gmail.com">
-          Mail︎︎︎
+          Mail <NorthEast />
         </a>
         <p className={styles.copyright}>
           ©2021 Lara Gabathuler. All rights reserved.

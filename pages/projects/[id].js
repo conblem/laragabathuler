@@ -6,6 +6,8 @@ import { MDXRemote } from "next-mdx-remote";
 import styles from "../../styles/Projects.module.scss";
 import Thumbnail from "../../components/Thumbnail";
 import { getProjectIds, getProject } from "../../lib/projects";
+import East from "../../public/east.svg";
+import West from "../../public/west.svg";
 
 export async function getStaticPaths() {
   const projects = await getProjectIds();
@@ -57,8 +59,16 @@ export default function Project({
       <MDXRemote {...source} components={components} />
 
       <div className={`${styles.beforeafter} column is-full`}>
-        <Link href={`/projects/${before}`}>← Before</Link>
-        <Link href={`/projects/${after}`}>After →</Link>
+        <Link href={`/projects/${before}`}>
+          <a>
+            <West /> Before
+          </a>
+        </Link>
+        <Link href={`/projects/${after}`}>
+          <a>
+            After <East />
+          </a>
+        </Link>
       </div>
     </div>
   );
