@@ -16,6 +16,10 @@ export default function Layout({ children }) {
       <Head>
         <meta name="description" content="Lara Gabathuler" />
         <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="stylesheet"
+          href="https://use.typekit.net/qoh8unn.css"
+        ></link>
       </Head>
       <header className={styles.header}>
         <nav>

@@ -3,14 +3,11 @@
 @import "../node_modules/bulma/sass/helpers/_all.sass";
 @import "../node_modules/bulma/sass/grid/_all.sass";
 
-@import "./ranade.scss";
-
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: Ranade-Regular;
-  color: black;
+  font-family: acumin-pro-wide;
 }
 
 a {
