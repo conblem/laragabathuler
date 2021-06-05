@@ -4,8 +4,8 @@ import Content from "./Content";
 
 export default function Image({ src, full, alt }) {
   const aspect = full
-    ? { aspectX: 16, aspectY: 9 }
-    : { aspectX: 8, aspectY: 9 };
+    ? { aspectX: 2500, aspectY: 1441 }
+    : { aspectX: 1250, aspectY: 1485 };
 
   const className = full ? "is-full" : "is-half-desktop";
 

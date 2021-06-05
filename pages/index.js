@@ -19,7 +19,7 @@ export default function Home({ projects }) {
   const thumbnails = projects.map(({ id, cover, hover, title }) => (
     <Link key={id} href={`/projects/${id}`}>
       <a className="column is-half-desktop">
-        <Content hover={hover} aspectX="16" aspectY="9">
+        <Content hover={hover} aspectX={2500} aspectY={1441}>
           <Image alt={title} src={cover} layout="fill" objectFit="cover" />
         </Content>
       </a>
