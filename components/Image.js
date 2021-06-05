@@ -12,7 +12,13 @@ export default function Image({ src, full, alt }) {
   return (
     <div className={`column ${className}`}>
       <Content {...aspect}>
-        <NextImage alt={alt} src={src} layout="fill" objectFit="cover" />
+        <NextImage
+          alt={alt}
+          src={src}
+          layout="fill"
+          objectFit="cover"
+          quality={100}
+        />
       </Content>
     </div>
   );
