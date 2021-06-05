@@ -8,20 +8,31 @@ media_folder: public/images
 public_folder: /images
 
 collections:
-  - label: "Seiten"
+  - label: "Pages"
     name: "pages"
-    files:
-      - label: "About"
-        name: "about"
-        file: "content/about.mdx"
-        fields:
-          - label: "Titel"
-            name: "title"
-            widget: "string"
-          - label: "Body"
-            name: "body"
-            widget: "markdown"
-
+    folder: "content/"
+    extension: "mdx"
+    format: "frontmatter"
+    create: true
+    slug: "{{id}}"
+    identifier_field: slug
+    summary: "{{title}}"
+    fields:
+      - label: "ID"
+        name: "id"
+        widget: "string"
+      - label: "Titel"
+        name: "title"
+        widget: "string"
+      - label: "Zusammenfassung"
+        name: "summary"
+        widget: "markdown"
+      - label: "Beschreibung"
+        name: "description"
+        widget: "markdown"
+      - label: "Content"
+        name: "body"
+        widget: "markdown"
   - label: "Projekte"
     name: "projects"
     folder: "content/projects/"

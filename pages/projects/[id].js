@@ -1,11 +1,8 @@
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import Head from "next/head";
 
-import { MDXRemote } from "next-mdx-remote";
-
 import styles from "../../styles/Projects.module.scss";
-import Image from "../../components/Image";
+import MDX from "../../components/MDX";
 import { getProjectIds, getProject } from "../../lib/projects";
 import East from "../../public/east.svg";
 import West from "../../public/west.svg";
@@ -33,36 +30,12 @@ export async function getStaticProps({ params }) {
   };
 }
 
-const defaultComponents = { Image };
-const Lottie = dynamic(() => import("../../components/Lottie"));
-
-export default function Project({
-  source,
-  summary,
-  description,
-  before,
-  after,
-  componentNames,
-  title,
-}) {
-  const components = {
-    ...defaultComponents,
-    Lottie: componentNames.includes("Lottie") ? Lottie : null,
-  };
-
+export default function Project({ before, after, title, ...mdxProps }) {
   return (
-    <div className="columns is-multiline is-desktop">
+    <MDX {...mdxProps}>
       <Head>
         <title>{title}</title>
       </Head>
-      <div className="column is-half-desktop">
-        <MDXRemote {...description} />
-      </div>
-      <div className="column is-half-desktop">
-        <MDXRemote {...summary} />
-      </div>
-      <MDXRemote {...source} components={components} />
-
       <div className={`${styles.beforeafter} column is-full`}>
         <Link href={`/projects/${before}`}>
           <a>
@@ -75,6 +48,6 @@ export default function Project({
           </a>
         </Link>
       </div>
-    </div>
+    </MDX>
   );
 }
