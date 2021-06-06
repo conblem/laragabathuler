@@ -8,6 +8,8 @@
 
 .hover {
   display: none;
+  // assists no script user
+  opacity: 1;
   font-size: 1.75rem;
   padding: 40px;
 }
