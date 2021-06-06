@@ -7,11 +7,13 @@
 }
 
 .hover {
+  display: none;
   font-size: 1.75rem;
   padding: 40px;
 }
 
 .content:hover .hover {
+  display: initial;
 }
 
 // if device cannot hover always show hover
