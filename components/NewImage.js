@@ -1,11 +1,12 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { m } from "framer-motion";
-
-const observer = new IntersectionObserver();
+import { useInView } from "react-intersection-observer";
 
 export default function NewImage({ src, placeholder, ...props }) {
   const ref = useRef();
   const loaded = useRef(false);
+  const [intersection, inView] = useInView();
+  const [inViewMemoized, setInViewMemoized] = useState(false);
 
   const onLoad = () => {
     if (loaded.current) {
@@ -15,16 +16,26 @@ export default function NewImage({ src, placeholder, ...props }) {
   };
 
   useEffect(() => {
+    if (!inViewMemoized && inView) {
+      setInViewMemoized(true);
+    }
+  }, [inView]);
+
+  useEffect(() => {
     if (ref.current?.complete) {
       onLoad();
     }
-    let observer = new IntersectionObserver(entries);
   }, []);
 
   return (
-    <div>
+    <div ref={intersection}>
       {placeholder && <img src={placeholder} alt="palceholder"></img>}
-      <m.img ref={ref} onLoad={onLoad} {...props} />
+      <m.img
+        src={inViewMemoized ? src : undefined}
+        ref={ref}
+        onLoad={onLoad}
+        {...props}
+      />
       <noscript>
         {placeholder && <img src={placeholder} alt="placeholder"></img>}
         <img src={src} {...props} />
