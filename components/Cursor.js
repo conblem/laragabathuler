@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import { useMediaPredicate } from "react-media-hook";
+import { m, useAnimation } from "framer-motion";
 
 import styles from "../styles/Cursor.module.scss";
 
@@ -8,8 +9,17 @@ export default function CursorConditional() {
   return isFinePointer && <Cursor />;
 }
 
+const variants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+};
+
 function Cursor() {
-  const animationFrame = useRef();
+  const controls = useAnimation();
   const ref = useRef();
 
   useEffect(() => {
@@ -22,10 +32,11 @@ function Cursor() {
     body.addEventListener("mouseleave", mouseleave);
 
     let initialMove = false;
+    let animationFrame;
     const mousemove = (event) => {
-      animationFrame.current = window.requestAnimationFrame(() => {
+      animationFrame = window.requestAnimationFrame(() => {
         if (!initialMove) {
-          ref.current.classList.remove(styles.hide);
+          controls.start("animate");
           body.classList.add("hide-original-cursor");
         }
         initialMove = true;
@@ -41,9 +52,17 @@ function Cursor() {
       body.removeEventListener("mouseenter", mouseenter);
       body.removeEventListener("mouseleave", mouseleave);
       body.removeEventListener("mousemove", mousemove);
-      window.cancelAnimationFrame(animationFrame.current);
+      window.cancelAnimationFrame(animationFrame);
     };
   }, []);
 
-  return <div className={`${styles.cursor} ${styles.hide}`} ref={ref}></div>;
+  return (
+    <m.div
+      variants={variants}
+      initial="initial"
+      animate={controls}
+      className={`${styles.cursor}`}
+      ref={ref}
+    ></m.div>
+  );
 }

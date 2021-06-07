@@ -3,7 +3,7 @@ import styles from "../styles/Content.module.scss";
 
 const variants = {
   initial: {
-    opacity: 0,
+    opacity: 1,
   },
   animate: {
     opacity: 0,
