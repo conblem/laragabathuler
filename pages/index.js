@@ -1,10 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
-import styles from "../styles/Home.module.scss";
+import NextImage from "next/image";
 
-import AnimatedImage from "../components/AnimatedImage";
 import Content from "../components/Content";
 import { getProjects } from "../lib/projects";
+import styles from "../styles/Home.module.scss";
 
 export async function getStaticProps() {
   let projects = await getProjects();
@@ -20,12 +20,7 @@ export default function Home({ projects }) {
     <Link key={id} href={`/projects/${id}`}>
       <a className="column is-half-desktop">
         <Content hover={hover} aspectX={2500} aspectY={1441}>
-          <AnimatedImage
-            alt={title}
-            src={cover}
-            layout="fill"
-            objectFit="cover"
-          />
+          <NextImage alt={title} src={cover} layout="fill" objectFit="cover" />
         </Content>
       </a>
     </Link>

@@ -14,6 +14,7 @@ export default function Project({
   description,
   componentNames,
   children,
+  cover,
 }) {
   const components = {
     ...defaultComponents,
@@ -28,8 +29,8 @@ export default function Project({
       <div className={`${styles.text} column is-half-desktop`}>
         <MDXRemote {...summary} />
       </div>
+      {cover}
       <MDXRemote {...source} components={components} />
-
       {children}
     </div>
   );

@@ -1,4 +1,5 @@
-import AnimatedImage from "./AnimatedImage";
+import NextImage from "next/image";
+
 import Content from "./Content";
 
 export default function Image({ src, full, alt }) {
@@ -11,7 +12,7 @@ export default function Image({ src, full, alt }) {
   return (
     <div className={`column ${className}`}>
       <Content {...aspect}>
-        <AnimatedImage
+        <NextImage
           alt={alt}
           src={src}
           layout="fill"

@@ -30,7 +30,9 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default function Project({ before, after, title, ...mdxProps }) {
+export default function Project({ before, after, title, cover, ...mdxProps }) {
+  const coverChildren = <div className={`column is-half-desktop`}></div>;
+
   return (
     <MDX {...mdxProps}>
       <Head>

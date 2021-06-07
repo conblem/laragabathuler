@@ -12,7 +12,6 @@ const Cursor = dynamic(() => import("./Cursor"), {
 export default function Layout({ children }) {
   return (
     <div className={styles.layout}>
-      <Cursor />
       <Head>
         <meta name="description" content="Lara Gabathuler" />
         <link rel="icon" href="/favicon.ico" />
