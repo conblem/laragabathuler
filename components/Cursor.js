@@ -48,6 +48,7 @@ function Cursor() {
     body.addEventListener("mousemove", mousemove);
 
     return () => {
+      controls.stop();
       body.classList.remove("hide-original-cursor");
       body.removeEventListener("mouseenter", mouseenter);
       body.removeEventListener("mouseleave", mouseleave);
@@ -61,7 +62,7 @@ function Cursor() {
       variants={variants}
       initial="initial"
       animate={controls}
-      className={`${styles.cursor}`}
+      className={styles.cursor}
       ref={ref}
     ></m.div>
   );

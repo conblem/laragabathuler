@@ -1,8 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
-import Image from "next/image";
 import styles from "../styles/Home.module.scss";
 
+import AnimatedImage from "../components/AnimatedImage";
 import Content from "../components/Content";
 import { getProjects } from "../lib/projects";
 
@@ -20,7 +20,12 @@ export default function Home({ projects }) {
     <Link key={id} href={`/projects/${id}`}>
       <a className="column is-half-desktop">
         <Content hover={hover} aspectX={2500} aspectY={1441}>
-          <Image alt={title} src={cover} layout="fill" objectFit="cover" />
+          <AnimatedImage
+            alt={title}
+            src={cover}
+            layout="fill"
+            objectFit="cover"
+          />
         </Content>
       </a>
     </Link>
