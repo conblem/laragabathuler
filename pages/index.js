@@ -1,6 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
-import NextImage from "next/image";
+import { useAnimation } from "framer-motion";
+import { getImage } from "@plaiceholder/next";
+import { getBase64 } from "@plaiceholder/base64";
 
 import NewImage from "../components/NewImage";
 import Content from "../components/Content";
@@ -9,22 +11,56 @@ import styles from "../styles/Home.module.scss";
 
 export async function getStaticProps() {
   let projects = await getProjects();
+  let projectsWithPlacehodler = projects.map(async ({ data }) => {
+    const placeholder = await getImage(data.cover);
+    const placeholder64 = await getBase64(placeholder);
+    return { ...data, placeholder: placeholder64 };
+  });
+
   return {
     props: {
-      projects: projects.map(({ data }) => data),
+      projects: await Promise.all(projectsWithPlacehodler),
     },
   };
 }
 
-export default function Home({ projects }) {
-  const thumbnails = projects.map(({ id, cover, hover, title }) => (
+const variants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+};
+
+function Project({ id, cover, hover, title, placeholder }) {
+  const controls = useAnimation();
+  const onLoad = () => {
+    controls.start("animate");
+  };
+
+  return (
     <Link key={id} href={`/projects/${id}`}>
       <a className="column is-half-desktop">
         <Content hover={hover} aspectX={2500} aspectY={1441}>
-          <NewImage alt={title} src={cover}></NewImage>
+          <NewImage
+            onLoad={onLoad}
+            variants={variants}
+            initial="initial"
+            animate={controls}
+            alt={title}
+            src={cover}
+            placeholder={placeholder}
+          ></NewImage>
         </Content>
       </a>
     </Link>
+  );
+}
+
+export default function Home({ projects }) {
+  const thumbnails = projects.map((project) => (
+    <Project {...project} key={project.id} />
   ));
 
   return (
