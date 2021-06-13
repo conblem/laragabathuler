@@ -39,12 +39,12 @@ export default function Project({ before, after, title, ...mdxProps }) {
       <div className={`${styles.beforeafter} column is-full`}>
         <Link href={`/projects/${before}`}>
           <a>
-            <West /> Previous Project
+            ← Previous <span className={styles.project}>Project</span>
           </a>
         </Link>
         <Link href={`/projects/${after}`}>
           <a>
-            Next Project <East />
+            Next <span className={styles.project}>Project</span> →
           </a>
         </Link>
       </div>

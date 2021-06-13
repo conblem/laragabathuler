@@ -1,3 +1,5 @@
+@import "../node_modules/bulma/sass/utilities/mixins.sass";
+
 $borderRadius: 15px;
 
 .content {
@@ -27,6 +29,7 @@ $borderRadius: 15px;
 }
 
 $textHeight: 3.5rem;
+$textHeightMobile: 2.75rem;
 
 .hover {
   position: absolute;
@@ -35,6 +38,12 @@ $textHeight: 3.5rem;
   background-color: transparent;
   height: $textHeight;
   display: none;
+}
+
+@include mobile {
+  .hover {
+    height: $textHeightMobile;
+  }
 }
 
 .content:hover .hover {
@@ -56,18 +65,37 @@ $textHeight: 3.5rem;
   width: $borderRadius;
 }
 
+@include mobile {
+  .top {
+    bottom: $textHeightMobile;
+  }
+}
+
 .textWrapper {
   align-self: stretch;
   border-top-right-radius: $borderRadius;
   background-color: white;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 25px;
+  padding-right: 25px;
   display: flex;
   align-items: center;
 }
 
+@include mobile {
+  .textWrapper {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
 .text {
   font-size: 1.75rem;
+}
+
+@include mobile {
+  .text {
+    font-size: 1.5rem;
+  }
 }
 
 .right {

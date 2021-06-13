@@ -24,7 +24,9 @@ export default function Layout({ children }) {
       <header className={styles.header}>
         <nav>
           <Link href="/">
-            <a>Lara Gabathuler</a>
+            <a>
+              Lara <span className={styles.lastName}>Gabathuler</span>
+            </a>
           </Link>
           <Link href="/about">
             <a>About</a>
@@ -33,7 +35,7 @@ export default function Layout({ children }) {
       </header>
       <div className={styles.children}>{children}</div>
       <footer className={styles.footer}>
-        <a className={styles.mail} href="mailto:larataba@gmail.com">
+        <a className={styles.mail} href="mailto:laragaba@hotmail.ch">
           Mail <NorthEast />
         </a>
         <p className={styles.copyright}>

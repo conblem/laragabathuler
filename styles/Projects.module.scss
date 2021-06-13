@@ -1,3 +1,5 @@
+@import "../node_modules/bulma/sass/utilities/mixins.sass";
+
 .beforeafter {
   display: flex;
   justify-content: space-between;
@@ -5,4 +7,10 @@
 
 .beforeafter a {
   font-size: 1.75rem;
+}
+
+@include mobile {
+  .project {
+    display: none;
+  }
 }
