@@ -1,10 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import styles from "../styles/Home.module.scss";
 
 import Content from "../components/Content";
 import { getProjects } from "../lib/projects";
+import styles from "../styles/Home.module.scss";
 
 export async function getStaticProps() {
   let projects = await getProjects();
@@ -15,8 +15,8 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ projects }) {
-  const thumbnails = projects.map(({ id, cover, hover, title }) => (
+function Project({ id, cover, hover, title }) {
+  return (
     <Link key={id} href={`/projects/${id}`}>
       <a className="column is-half-desktop">
         <Content hover={hover} aspectX={2500} aspectY={1441}>
@@ -24,6 +24,12 @@ export default function Home({ projects }) {
         </Content>
       </a>
     </Link>
+  );
+}
+
+export default function Home({ projects }) {
+  const thumbnails = projects.map((props) => (
+    <Project {...props} key={props.id} />
   ));
 
   return (
