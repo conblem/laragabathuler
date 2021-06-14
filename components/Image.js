@@ -1,5 +1,6 @@
 import NextImage from "next/image";
 
+import styles from "../styles/Image.module.scss";
 import Content from "./Content";
 
 export default function Image({ src, full, alt }) {
@@ -13,6 +14,7 @@ export default function Image({ src, full, alt }) {
     <div className={`column ${className}`}>
       <Content {...aspect}>
         <NextImage
+          className={styles.image}
           alt={alt}
           src={src}
           layout="fill"
