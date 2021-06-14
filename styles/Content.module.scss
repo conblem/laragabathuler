@@ -59,7 +59,7 @@ $textHeightMobile: 2.75rem;
 
 .top {
   position: absolute;
-  bottom: $textHeight;
+  bottom: calc(#{$textHeight} - 1px);
   left: 0;
   height: $borderRadius;
   width: $borderRadius;
@@ -67,7 +67,7 @@ $textHeightMobile: 2.75rem;
 
 @include mobile {
   .top {
-    bottom: $textHeightMobile;
+    bottom: calc(#{$textHeightMobile} - 1px);
   }
 }
 
@@ -102,6 +102,8 @@ $textHeightMobile: 2.75rem;
   height: $borderRadius;
   width: $borderRadius;
   align-self: flex-end;
+  margin-left: -1px;
+  margin-bottom: -1px;
 }
 
 .ring {
