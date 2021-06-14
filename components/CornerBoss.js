@@ -11,7 +11,6 @@ const calculate = (setElem, width) =>
         return;
       }
       const { left, right } = node.getBoundingClientRect();
-      console.log({ left, right });
       setElem({ left, right });
     },
     [width]
