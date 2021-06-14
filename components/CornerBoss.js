@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import ReactDOM from "react-dom";
 
+import styles from "../styles/CornerBoss.module.scss";
 import Maske from "../public/maske.svg";
 
 const calculate = (setElem, width) =>
@@ -9,7 +10,7 @@ const calculate = (setElem, width) =>
       if (!node) {
         return;
       }
-      const { left, right } = node.getBoundingRect();
+      const { left, right } = node.getBoundingClientRect();
       setElem({ left, right });
     },
     [width]
@@ -46,19 +47,15 @@ function Corners({ left, right }) {
   return (
     <>
       <Maske
+        className={styles.corner}
         style={{
-          transform: `transform: translateX(${left}px) rotate(90deg) translateY(100px)`,
-          width: 15,
-          height: 15,
+          transform: `translateX(${left}px) rotate(90deg)`,
         }}
       />
       <Maske
+        className={styles.corner}
         style={{
-          transform: `transform: translateX(${
-            right - 15
-          }px) rotate(180deg) translateY(100px)`,
-          width: 15,
-          height: 15,
+          transform: `translateX(${right - 15}px) rotate(180deg)`,
         }}
       />
     </>
