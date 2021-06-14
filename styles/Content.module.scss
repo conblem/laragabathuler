@@ -10,10 +10,6 @@ $borderRadius: 15px;
   border-radius: $borderRadius;
 }
 
-.content:hover {
-  border-bottom-left-radius: 0;
-}
-
 .cover {
   position: absolute;
   top: 0;
@@ -28,22 +24,11 @@ $borderRadius: 15px;
   justify-content: center;
 }
 
-$textHeight: 3.5rem;
-$textHeightMobile: 2.75rem;
-
 .hover {
-  position: absolute;
-  bottom: 0;
-  left: 0;
   background-color: transparent;
-  height: $textHeight;
   display: none;
-}
-
-@include mobile {
-  .hover {
-    height: $textHeightMobile;
-  }
+  align-items: flex-end;
+  justify-content: flex-start;
 }
 
 .content:hover .hover {
@@ -56,6 +41,9 @@ $textHeightMobile: 2.75rem;
     display: flex;
   }
 }
+
+$textHeight: 3.5rem;
+$textHeightMobile: 2.75rem;
 
 .top {
   position: absolute;
@@ -72,17 +60,18 @@ $textHeightMobile: 2.75rem;
 }
 
 .textWrapper {
-  align-self: stretch;
   border-top-right-radius: $borderRadius;
   background-color: white;
   padding-left: 25px;
   padding-right: 25px;
   display: flex;
   align-items: center;
+  height: $textHeight;
 }
 
 @include mobile {
   .textWrapper {
+    height: $textHeightMobile;
     padding-left: 15px;
     padding-right: 15px;
   }
