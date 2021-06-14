@@ -1,5 +1,6 @@
 import NextImage from "next/image";
 
+import { IntersectionRef } from "../components/CornerBoss";
 import styles from "../styles/Image.module.scss";
 import Content from "./Content";
 
@@ -12,16 +13,20 @@ export default function Image({ src, full, alt }) {
 
   return (
     <div className={`column ${className}`}>
-      <Content {...aspect}>
-        <NextImage
-          className={styles.image}
-          alt={alt}
-          src={src}
-          layout="fill"
-          objectFit="cover"
-          quality={100}
-        />
-      </Content>
+      <IntersectionRef>
+        {(ref) => (
+          <Content ref={ref} {...aspect}>
+            <NextImage
+              className={styles.image}
+              alt={alt}
+              src={src}
+              layout="fill"
+              objectFit="cover"
+              quality={100}
+            />
+          </Content>
+        )}
+      </IntersectionRef>
     </div>
   );
 }
