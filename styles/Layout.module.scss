@@ -49,6 +49,11 @@
   font-size: 1.75rem;
 }
 
+.mail svg {
+  height: 1.3rem;
+  width: 1.3rem;
+}
+
 .copyright {
   font-size: 1.25rem;
 }
@@ -57,4 +62,8 @@
   .lastName {
     display: none;
   }
+}
+
+.active {
+  border-bottom: 0.175rem solid black;
 }

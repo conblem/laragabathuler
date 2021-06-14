@@ -4,8 +4,6 @@ import Head from "next/head";
 import styles from "../../styles/Projects.module.scss";
 import MDX from "../../components/MDX";
 import { getProjectIds, getProject } from "../../lib/projects";
-import East from "../../public/east.svg";
-import West from "../../public/west.svg";
 
 export async function getStaticPaths() {
   const projects = await getProjectIds();

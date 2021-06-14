@@ -1,34 +1,31 @@
-import dynamic from "next/dynamic";
-
 import { MDXRemote } from "next-mdx-remote";
 
 import Image from "./Image";
 import styles from "../styles/MDX.module.scss";
+import Arrow from "../public/arrow.svg";
 
-const defaultComponents = { Image };
-const Lottie = dynamic(() => import("./Lottie"));
+function Link({ children, ...props }) {
+  return (
+    <a className={styles.link} {...props}>
+      {children} <Arrow className={styles.icon} />
+    </a>
+  );
+}
 
-export default function Project({
-  source,
-  summary,
-  description,
-  componentNames,
-  children,
-}) {
+export default function Project({ source, summary, description, children }) {
   const components = {
-    ...defaultComponents,
-    Lottie: componentNames.includes("Lottie") ? Lottie : null,
+    a: Link,
   };
 
   return (
     <div className="columns is-multiline is-desktop">
       <div className={`${styles.text} column is-half-desktop`}>
-        <MDXRemote {...description} />
+        <MDXRemote {...description} components={components} />
       </div>
       <div className={`${styles.text} column is-half-desktop`}>
-        <MDXRemote {...summary} />
+        <MDXRemote {...summary} components={components} />
       </div>
-      <MDXRemote {...source} components={components} />
+      <MDXRemote {...source} components={{ Image }} />
 
       {children}
     </div>
