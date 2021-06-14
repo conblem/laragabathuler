@@ -27,11 +27,10 @@ export default function CornerBoss({ children }) {
     const onresize = () => {
       setWidth(document.body.clientWidth);
     };
-    const observer = new ResizeObserver(onresize);
-    observer.observe(document.body);
+    window.addEventListener("resize", onresize);
     onresize();
 
-    return () => observer.disconnect();
+    return () => window.removeEventListener("resize", onresize);
   }, []);
 
   return (

@@ -1,13 +1,11 @@
 @import "../node_modules/bulma/sass/utilities/mixins.sass";
-
-$borderRadius: 15px;
+@import "./variables.scss";
 
 .content {
   overflow: hidden;
   position: relative;
   height: 0;
   width: 100%;
-  border-radius: $borderRadius;
 }
 
 .cover {

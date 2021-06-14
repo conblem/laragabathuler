@@ -49,11 +49,11 @@ export default function Layout({ children }) {
           </ActiveLink>
         </nav>
       </header>
-      <div className={styles.children}>
+      <main className={styles.children}>
         <LazyMotion strict features={loadFeatures}>
           {children}
         </LazyMotion>
-      </div>
+      </main>
       <footer className={styles.footer}>
         <a className={styles.mail} href="mailto:laragaba@hotmail.ch">
           Mail <Arrow />
