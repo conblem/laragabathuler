@@ -45,7 +45,7 @@ export default function Layout({ children }) {
           </ActiveLink>
         </nav>
       </header>
-      <div className={styles.children}>{children}</div>
+      <main className={styles.children}>{children}</main>
       <footer className={styles.footer}>
         <a className={styles.mail} href="mailto:laragaba@hotmail.ch">
           Mail <Arrow />
