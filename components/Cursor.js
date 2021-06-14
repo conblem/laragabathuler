@@ -1,4 +1,5 @@
 import { useRef, useEffect } from "react";
+import ReactDOM from "react-dom";
 import { useMediaPredicate } from "react-media-hook";
 
 import styles from "../styles/Cursor.module.scss";
@@ -45,5 +46,9 @@ function Cursor() {
     };
   }, []);
 
-  return <div className={`${styles.cursor} ${styles.hide}`} ref={ref}></div>;
+  return ReactDOM.createPortal(
+    <div className={`${styles.cursor} ${styles.hide}`} ref={ref}></div>,
+    document.body
+  );
+  //return <div className={`${styles.cursor} ${styles.hide}`} ref={ref}></div>;
 }

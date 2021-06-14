@@ -3,6 +3,10 @@
 @import "../node_modules/bulma/sass/helpers/_all.sass";
 @import "../node_modules/bulma/sass/grid/_all.sass";
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   color: black;
@@ -11,15 +15,8 @@ body {
   font-family: "acumin-pro-wide";
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-// fix cursor
-
-* {
-  box-sizing: border-box;
+body {
+  background-color: white;
 }
 
 body:not(.hide-original-cursor) * {
@@ -28,4 +25,9 @@ body:not(.hide-original-cursor) * {
 
 body.hide-original-cursor * {
   cursor: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
