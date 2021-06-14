@@ -54,9 +54,9 @@ $textHeightMobile: 2.75rem;
 .top {
   position: absolute;
   bottom: calc(#{$textHeight} - 1px);
-  left: 0;
-  height: $borderRadius;
-  width: $borderRadius;
+  left: -1px;
+  height: $borderRadius + 1px;
+  width: $borderRadius + 1px;
 }
 
 @include mobile {
@@ -93,8 +93,8 @@ $textHeightMobile: 2.75rem;
 }
 
 .right {
-  height: $borderRadius;
-  width: $borderRadius;
+  height: $borderRadius + 1px;
+  width: $borderRadius + 1px;
   align-self: flex-end;
   margin-left: -1px;
   margin-bottom: -1px;

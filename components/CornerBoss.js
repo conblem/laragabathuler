@@ -1,8 +1,23 @@
-import { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 import ReactDOM from "react-dom";
 
 import styles from "../styles/CornerBoss.module.scss";
 import Maske from "../public/maske.svg";
+
+const TopContext = React.createContext(0);
+
+export function TopProvider({ children }) {
+  const [top, setTop] = useState(0);
+
+  const ref = useCallback((node) => {
+    if (node) {
+      const { bottom } = node.getBoundingClientRect();
+      setTop(bottom);
+    }
+  }, []);
+
+  return <TopContext.Provider value={top}>{children(ref)}</TopContext.Provider>;
+}
 
 const calculate = (setElem, width) =>
   useCallback(
@@ -43,18 +58,19 @@ export default function CornerBoss({ children }) {
 }
 
 function Corners({ left, right }) {
+  const top = useContext(TopContext);
   return (
     <>
       <Maske
         className={styles.corner}
         style={{
-          transform: `translateX(${left - 1}px) rotate(90deg)`,
+          transform: `translate(${left - 1}px, ${top - 1}px) rotate(90deg)`,
         }}
       />
       <Maske
         className={styles.corner}
         style={{
-          transform: `translateX(${right - 14}px) rotate(180deg)`,
+          transform: `translate(${right - 15}px, ${top - 1}px) rotate(180deg)`,
         }}
       />
     </>
