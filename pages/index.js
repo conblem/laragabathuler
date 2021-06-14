@@ -1,16 +1,11 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import dynamic from "next/dynamic";
 
+import CornerBoss from "../components/CornerBoss";
 import Content from "../components/Content";
 import { getProjects } from "../lib/projects";
 import styles from "../styles/Home.module.scss";
-
-// add fallback
-const CornerBoss = dynamic(() => import("../components/CornerBoss"), {
-  ssr: false,
-});
 
 export async function getStaticProps() {
   let projects = await getProjects();
@@ -32,6 +27,7 @@ function Thumbnails({ projects }) {
                 hover={hover}
                 aspectX={2500}
                 aspectY={1441}
+                // load cornerboss for first two images
                 ref={i == 0 ? ref1 : i == 1 ? ref2 : undefined}
               >
                 <Image

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import ReactDOM from "react-dom";
 
 import styles from "../styles/CornerBoss.module.scss";
@@ -11,6 +11,7 @@ const calculate = (setElem, width) =>
         return;
       }
       const { left, right } = node.getBoundingClientRect();
+      console.log({ left, right });
       setElem({ left, right });
     },
     [width]
@@ -49,7 +50,7 @@ function Corners({ left, right }) {
       <Maske
         className={styles.corner}
         style={{
-          transform: `translateX(${left}px) rotate(90deg)`,
+          transform: `translateX(${left - 1}px) rotate(90deg)`,
         }}
       />
       <Maske
