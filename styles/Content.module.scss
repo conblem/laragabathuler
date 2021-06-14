@@ -1,14 +1,11 @@
 @import "../node_modules/bulma/sass/utilities/mixins.sass";
+@import "./variables.scss";
 
 .content {
   overflow: hidden;
   position: relative;
   height: 0;
   width: 100%;
-}
-
-.content:hover {
-  border-bottom-left-radius: 0;
 }
 
 .cover {
@@ -53,8 +50,6 @@ $textHeightMobile: 2.75rem;
     display: flex;
   }
 }
-
-$borderRadius: 15px;
 
 .top {
   position: absolute;

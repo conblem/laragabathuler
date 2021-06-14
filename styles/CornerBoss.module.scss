@@ -1,6 +1,8 @@
+@import "./variables.scss";
+
 .corner {
-  width: 15px;
-  height: 15px;
+  width: $borderRadius;
+  height: $borderRadius;
   position: fixed;
   top: calc(4.4rem - 1px);
   left: 0;

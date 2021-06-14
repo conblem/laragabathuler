@@ -1,3 +1,5 @@
+@import "./variables.scss";
+
 .image {
-  border-radius: 15px;
+  border-radius: $borderRadius;
 }
