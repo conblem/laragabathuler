@@ -16,6 +16,10 @@ export async function getStaticProps() {
   };
 }
 
+function loader({ src, quality }) {
+  return `/_next/image?url=${src}&w=1200&q=${quality || 75}`;
+}
+
 function Thumbnails({ projects }) {
   return (
     <CornerBoss>
@@ -32,6 +36,7 @@ function Thumbnails({ projects }) {
               >
                 <Image
                   className={styles.image}
+                  loader={loader}
                   alt={title}
                   src={cover}
                   layout="fill"
