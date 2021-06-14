@@ -5,7 +5,7 @@ import { useMediaPredicate } from "react-media-hook";
 import styles from "../styles/Cursor.module.scss";
 
 export default function CursorConditional() {
-  const isFinePointer = useMediaPredicate("(pointer: fine");
+  const isFinePointer = useMediaPredicate("(pointer: fine)");
   return isFinePointer && <Cursor />;
 }
 
@@ -50,5 +50,4 @@ function Cursor() {
     <div className={`${styles.cursor} ${styles.hide}`} ref={ref}></div>,
     document.body
   );
-  //return <div className={`${styles.cursor} ${styles.hide}`} ref={ref}></div>;
 }
