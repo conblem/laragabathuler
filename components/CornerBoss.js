@@ -11,7 +11,6 @@ const calculate = (setElem, width) =>
         return;
       }
       const { left, right } = node.getBoundingClientRect();
-      console.log({ left, right });
       setElem({ left, right });
     },
     [width]
@@ -56,7 +55,7 @@ function Corners({ left, right }) {
       <Maske
         className={styles.corner}
         style={{
-          transform: `translateX(${right - 15}px) rotate(180deg)`,
+          transform: `translateX(${right - 14}px) rotate(180deg)`,
         }}
       />
     </>
