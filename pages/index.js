@@ -1,10 +1,16 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 
 import Content from "../components/Content";
 import { getProjects } from "../lib/projects";
 import styles from "../styles/Home.module.scss";
+
+// add fallback
+const CornerBoss = dynamic(() => import("../components/CornerBoss"), {
+  ssr: false,
+});
 
 export async function getStaticProps() {
   let projects = await getProjects();
@@ -15,23 +21,22 @@ export async function getStaticProps() {
   };
 }
 
-function Project({ id, cover, hover, title }) {
-  return (
-    <Link key={id} href={`/projects/${id}`}>
-      <a className="column is-half-desktop">
-        <Content hover={hover} aspectX={2500} aspectY={1441}>
-          <Image alt={title} src={cover} layout="fill" objectFit="cover" />
-        </Content>
-      </a>
-    </Link>
-  );
-}
+function Thumbnails({ projects }) {
+  <CornerBoss>
+    {(ref1, ref2) => (
+      projects.map(({ id, cover, hover, title }, i) => (
+        <Link key={id} href={`/projects/${id}`}>
+          <a className="column is-half-desktop">
+            <Content hover={hover} aspectX={2500} aspectY={1441}>
+              <Image alt={title} src={cover} layout="fill" objectFit="cover" />
+            </Content>
+          </a>
+        </Link>
+      ))
+    )}
+  </CornerBoss>
 
 export default function Home({ projects }) {
-  const thumbnails = projects.map((props) => (
-    <Project {...props} key={props.id} />
-  ));
-
   return (
     <div className={`${styles.home} columns is-desktop is-multiline`}>
       <Head>
