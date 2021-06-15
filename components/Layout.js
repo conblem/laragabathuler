@@ -3,7 +3,7 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 
-import { TopProvider } from "../components/CornerBoss";
+import CornerBoss from "../components/CornerBoss";
 import Arrow from "../public/arrow.svg";
 import styles from "../styles/Layout.module.scss";
 
@@ -24,7 +24,7 @@ function ActiveLink({ href, children, ...props }) {
 
 export default function Layout({ children }) {
   return (
-    <TopProvider>
+    <CornerBoss>
       {(ref) => (
         <div className={styles.layout}>
           <Cursor />
@@ -59,6 +59,6 @@ export default function Layout({ children }) {
           </footer>
         </div>
       )}
-    </TopProvider>
+    </CornerBoss>
   );
 }

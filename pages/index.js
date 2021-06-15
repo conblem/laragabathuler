@@ -2,7 +2,6 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 
-import CornerBoss from "../components/CornerBoss";
 import Content from "../components/Content";
 import { getProjects } from "../lib/projects";
 import styles from "../styles/Home.module.scss";
@@ -21,34 +20,22 @@ function loader({ src, quality }) {
 }
 
 function Thumbnails({ projects }) {
-  return (
-    <CornerBoss>
-      {(ref1, ref2) =>
-        projects.map(({ id, cover, hover, title }, i) => (
-          <Link key={id} href={`/projects/${id}`}>
-            <a className="column is-half-desktop">
-              <Content
-                hover={hover}
-                aspectX={2500}
-                aspectY={1441}
-                // load cornerboss for first two images
-                ref={i == 0 ? ref1 : i == 1 ? ref2 : undefined}
-              >
-                <Image
-                  className={styles.image}
-                  loader={loader}
-                  alt={title}
-                  src={cover}
-                  layout="fill"
-                  objectFit="cover"
-                />
-              </Content>
-            </a>
-          </Link>
-        ))
-      }
-    </CornerBoss>
-  );
+  return projects.map(({ id, cover, hover, title }) => (
+    <Link key={id} href={`/projects/${id}`}>
+      <a className="column is-half-desktop">
+        <Content hover={hover} aspectX={2500} aspectY={1441}>
+          <Image
+            className={styles.image}
+            loader={loader}
+            alt={title}
+            src={cover}
+            layout="fill"
+            objectFit="cover"
+          />
+        </Content>
+      </a>
+    </Link>
+  ));
 }
 
 export default function Home({ projects }) {

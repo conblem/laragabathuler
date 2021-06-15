@@ -5,8 +5,6 @@ import useCallbackRef from "../lib/hook";
 import styles from "../styles/CornerBoss.module.scss";
 import Maske from "../public/maske.svg";
 
-const TopContext = React.createContext(0);
-const WidthContext = React.createContext(0);
 const ObserverContext = React.createContext();
 
 export function IntersectionRef({ children }) {
@@ -18,7 +16,9 @@ export function IntersectionRef({ children }) {
           return;
         }
         observer.observe(node);
-        return () => observer.unobserve(node);
+        return () => {
+          observer.unobserve(node);
+        };
       },
       [observer]
     )
@@ -27,30 +27,35 @@ export function IntersectionRef({ children }) {
   return children(ref);
 }
 
-export function TopProvider({ children }) {
+export default function CornerBoss({ children }) {
   const [height, setHeight] = useState(0);
   const [top, setTop] = useState(0);
   const [width, setWidth] = useState(0);
   const [observer, setObserver] = useState();
-  const [corners, setCorners] = useState([]);
+  const [corners, setCorners] = useState(new Map());
 
   // intersection observer
   useEffect(() => {
     if (top == 0 || height == 0) {
       return;
     }
-    console.log(height);
-    const observer = new IntersectionObserver(
-      (entries) => {
-        console.log(entries);
-      },
-      {
-        rootMargin: `-${top}px 0px -${height - top - 1}px 0px`,
-      }
-    );
+    const corners = new Map(corners);
+    const onobserve = (entries) => {
+      console.log(entries);
+      setCorners(
+        entries.reduce((acc, { target, isIntersecting }) => {
+          acc.set(target, isIntersecting);
+          console.log(acc);
+          return acc;
+        }, corners)
+      );
+    };
+    const observer = new IntersectionObserver(onobserve, {
+      rootMargin: `-${top}px 0px -${height - top - 1}px 0px`,
+    });
     setObserver(observer);
     return () => observer.disconnect();
-  }, [top, height]);
+  }, [top, height, width]);
 
   // calculates body height and width on resize
   useEffect(() => {
@@ -72,50 +77,24 @@ export function TopProvider({ children }) {
     }
   }, []);
 
+  console.log(corners);
+  const cornersComponents = Object.entries(corners)
+    .filter(([_, isIntersecting]) => isIntersecting)
+    .map(([target]) => <Corners top={top} target={target} />);
+
   return (
     <>
-      <TopContext.Provider value={top}>
-        {top && ReactDOM.createPortal(corners, document.body)}
-      </TopContext.Provider>
+      {top && ReactDOM.createPortal(cornersComponents, document.body)}
       <ObserverContext.Provider value={observer}>
-        <WidthContext.Provider value={width}>
-          {children(ref)}
-        </WidthContext.Provider>
+        {children(ref)}
       </ObserverContext.Provider>
     </>
   );
 }
 
-const calculate = (setElem, width) =>
-  useCallback(
-    (node) => {
-      if (!node) {
-        return;
-      }
-      const { left, right } = node.getBoundingClientRect();
-      setElem({ left, right });
-    },
-    [width]
-  );
+function Corners({ top, target }) {
+  const { left, right } = target.getBoundingClientRect();
 
-export default function CornerBoss({ children }) {
-  const width = useContext(WidthContext);
-  const [elem1, setElem1] = useState();
-  const [elem2, setElem2] = useState();
-  const ref1 = calculate(setElem1, width);
-  const ref2 = calculate(setElem2, width);
-
-  return (
-    <>
-      {elem1 && ReactDOM.createPortal(<Corners {...elem1} />, document.body)}
-      {children(ref1, ref2)}
-      {elem2 && ReactDOM.createPortal(<Corners {...elem2} />, document.body)}
-    </>
-  );
-}
-
-function Corners({ left, right }) {
-  const top = useContext(TopContext);
   return (
     <>
       <Maske
