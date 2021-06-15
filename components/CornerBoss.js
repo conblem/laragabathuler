@@ -39,17 +39,13 @@ export default function CornerBoss({ children }) {
     if (top == 0 || height == 0) {
       return;
     }
-    const corners = new Map(corners);
-    const onobserve = (entries) => {
-      console.log(entries);
-      setCorners(
-        entries.reduce((acc, { target, isIntersecting }) => {
-          acc.set(target, isIntersecting);
-          console.log(acc);
-          return acc;
+    const onobserve = entries => setCorners(prevCorners => {
+        const corners = new Map(prevCorners);
+        return entries.reduce((acc, { target, isIntersecting }) => {
+            acc.set(target, isIntersecting);
+            return acc;
         }, corners)
-      );
-    };
+    })
     const observer = new IntersectionObserver(onobserve, {
       rootMargin: `-${top}px 0px -${height - top - 1}px 0px`,
     });
@@ -77,10 +73,11 @@ export default function CornerBoss({ children }) {
     }
   }, []);
 
-  console.log(corners);
-  const cornersComponents = Object.entries(corners)
+  const cornersComponents = [...corners.entries()]
     .filter(([_, isIntersecting]) => isIntersecting)
-    .map(([target]) => <Corners top={top} target={target} />);
+    .map(([target], i) => <Corners key={i} top={top} target={target} />);
+
+  console.log(cornersComponents)
 
   return (
     <>

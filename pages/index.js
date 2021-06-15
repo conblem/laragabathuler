@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 
+import { IntersectionRef } from "../components/CornerBoss";
 import Content from "../components/Content";
 import { getProjects } from "../lib/projects";
 import styles from "../styles/Home.module.scss";
@@ -23,16 +24,20 @@ function Thumbnails({ projects }) {
   return projects.map(({ id, cover, hover, title }) => (
     <Link key={id} href={`/projects/${id}`}>
       <a className="column is-half-desktop">
-        <Content hover={hover} aspectX={2500} aspectY={1441}>
-          <Image
-            className={styles.image}
-            loader={loader}
-            alt={title}
-            src={cover}
-            layout="fill"
-            objectFit="cover"
-          />
-        </Content>
+        <IntersectionRef>
+          {(ref) => (
+            <Content ref={ref} hover={hover} aspectX={2500} aspectY={1441}>
+              <Image
+                className={styles.image}
+                loader={loader}
+                alt={title}
+                src={cover}
+                layout="fill"
+                objectFit="cover"
+              />
+            </Content>
+          )}
+        </IntersectionRef>
       </a>
     </Link>
   ));
