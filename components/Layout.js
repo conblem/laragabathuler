@@ -55,7 +55,7 @@ export default function Layout({ children }) {
             </a>
             <p className={styles.copyright}>
               ©2021 Lara Gabathuler.
-              <br className="is-hidden-desktop" /> All rights reserved.
+              <br className="is-hidden-tablet" /> All rights reserved.
             </p>
           </footer>
         </div>
