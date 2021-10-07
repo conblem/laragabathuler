@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 import styles from "../../styles/Projects.module.scss";
 import MDX from "../../components/MDX";
@@ -28,7 +30,24 @@ export async function getStaticProps({ params }) {
   };
 }
 
+const RIGHT_ARROW = 39;
+const LEFT_ARROW = 37;
+
 export default function Project({ before, after, title, ...mdxProps }) {
+  const router = useRouter();
+  useEffect(() => {
+    const onKeyPress = ({ keyCode }) => {
+      if (keyCode === LEFT_ARROW) {
+        router.push(`/projects/${before}`);
+      }
+      if (keyCode === RIGHT_ARROW) {
+        router.push(`/projects/${after}`);
+      }
+    };
+    document.addEventListener("keyup", onKeyPress);
+    return () => document.removeEventListener("keyup", onKeyPress);
+  });
+
   return (
     <MDX {...mdxProps}>
       <Head>
@@ -37,12 +56,12 @@ export default function Project({ before, after, title, ...mdxProps }) {
       <div className={`${styles.beforeafter} column is-full`}>
         <Link href={`/projects/${before}`}>
           <a>
-            ← Previous <span className={styles.project}>Project</span>
+            ← Previous <span className="is-hidden-mobile">Project</span>
           </a>
         </Link>
         <Link href={`/projects/${after}`}>
           <a>
-            Next <span className={styles.project}>Project</span> →
+            Next <span className="is-hidden-mobile">Project</span> →
           </a>
         </Link>
       </div>

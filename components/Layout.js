@@ -54,7 +54,8 @@ export default function Layout({ children }) {
               Mail <Arrow />
             </a>
             <p className={styles.copyright}>
-              ©2021 Lara Gabathuler. All rights reserved.
+              ©2021 Lara Gabathuler.
+              <br className="is-hidden-tablet" /> All rights reserved.
             </p>
           </footer>
         </div>
