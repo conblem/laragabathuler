@@ -8,7 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@openlab/vercel-netlify-cms-github": "^1.1.0",
+    "@openlab/vercel-netlify-cms-github": "^1.1.1",
     "@svgr/webpack": "^6.1.1",
     "bulma": "^0.9.3",
     "gray-matter": "^4.0.3",
@@ -18,5 +18,9 @@
     "react-dom": "^17.0.2",
     "react-media-hook": "^0.4.9",
     "sass": "^1.44.0"
+  },
+  "devDependencies": {
+    "eslint": "8.4.1",
+    "eslint-config-next": "12.0.7"
   }
 }

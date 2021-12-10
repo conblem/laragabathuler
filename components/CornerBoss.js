@@ -19,8 +19,10 @@ export function TopProvider({ children }) {
   return <TopContext.Provider value={top}>{children(ref)}</TopContext.Provider>;
 }
 
-const calculate = (setElem, width) =>
-  useCallback(
+function useCalculate(width) {
+  const [elem, setElem] = useState();
+
+  const ref = useCallback(
     (node) => {
       if (!node) {
         return;
@@ -28,15 +30,17 @@ const calculate = (setElem, width) =>
       const { left, right } = node.getBoundingClientRect();
       setElem({ left, right });
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [width]
   );
 
+  return [elem, ref];
+}
+
 export default function CornerBoss({ children }) {
   const [width, setWidth] = useState();
-  const [elem1, setElem1] = useState();
-  const [elem2, setElem2] = useState();
-  const ref1 = calculate(setElem1, width);
-  const ref2 = calculate(setElem2, width);
+  const [elem1, ref1] = useCalculate(width);
+  const [elem2, ref2] = useCalculate(width);
 
   useEffect(() => {
     const onresize = () => {
