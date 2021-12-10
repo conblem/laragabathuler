@@ -25,7 +25,7 @@ function ActiveLink({ href, children, ...props }) {
 export default function Layout({ children }) {
   return (
     <CornerBoss>
-      {(ref) => (
+      {(headerRef) => (
         <div className={styles.layout}>
           <Cursor />
           <Head>
@@ -36,7 +36,7 @@ export default function Layout({ children }) {
               rel="stylesheet"
             ></link>
           </Head>
-          <header ref={ref} className={styles.header}>
+          <header ref={headerRef} className={styles.header}>
             <nav>
               <Link href="/">
                 <a>

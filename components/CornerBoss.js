@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useContext } from "react";
 import ReactDOM from "react-dom";
 
-import useCallbackRef from "../lib/hook";
+import { useCallbackWithCleanup, useWindowSize } from "../lib/hook";
 import styles from "../styles/CornerBoss.module.scss";
 import Maske from "../public/maske.svg";
 
@@ -9,34 +9,31 @@ const ObserverContext = React.createContext();
 
 export function IntersectionRef({ children }) {
   const observer = useContext(ObserverContext);
-  const ref = useCallbackRef(
-    useCallback(
-      (node) => {
-        if (!observer) {
-          return;
-        }
-        observer.observe(node);
-        return () => {
-          observer.unobserve(node);
-        };
-      },
-      [observer]
-    )
+  const ref = useCallbackWithCleanup(
+    (node) => {
+      if (!observer) {
+        return;
+      }
+      observer.observe(node);
+      return () => {
+        observer.unobserve(node);
+      };
+    },
+    [observer]
   );
 
   return children(ref);
 }
 
 export default function CornerBoss({ children }) {
-  const [height, setHeight] = useState(0);
   const [top, setTop] = useState(0);
-  const [width, setWidth] = useState(0);
+  const [width, height] = useWindowSize();
   const [observer, setObserver] = useState();
   const [corners, setCorners] = useState(new Map());
 
   // intersection observer
   useEffect(() => {
-    if (top == 0 || height == 0) {
+    if (!top || !height) {
       return;
     }
     const onobserve = (entries) =>
@@ -54,43 +51,39 @@ export default function CornerBoss({ children }) {
     return () => observer.disconnect();
   }, [top, height, width]);
 
-  // calculates body height and width on resize
-  useEffect(() => {
-    const onresize = () => {
-      setWidth(document.body.clientWidth);
-      setHeight(window.innerHeight);
-    };
-    window.addEventListener("resize", onresize);
-    onresize();
-
-    return () => window.removeEventListener("resize", onresize);
-  }, []);
-
+  // passed to children so we can receive the header
   // calculates the height of the header
-  const ref = useCallback((node) => {
+  const headerRef = useCallback((node) => {
     if (node) {
       const { bottom } = node.getBoundingClientRect();
       setTop(bottom);
     }
   }, []);
 
-  const cornersComponents = [...corners.entries()]
-    .filter(([_, isIntersecting]) => isIntersecting)
-    .map(([target], i) => <Corners key={i} top={top} target={target} />);
-
-  console.log(cornersComponents);
-
   return (
     <>
-      {top && ReactDOM.createPortal(cornersComponents, document.body)}
+      <Corners top={top} corners={corners} />
       <ObserverContext.Provider value={observer}>
-        {children(ref)}
+        {children(headerRef)}
       </ObserverContext.Provider>
     </>
   );
 }
 
-function Corners({ top, target }) {
+function Corners({ top, corners }) {
+  const cornerComponents = [...corners.entries()]
+    .filter(([_, isIntersecting]) => isIntersecting)
+    .map(([target], i) => (
+      <LeftRightCorner key={i} top={top} target={target} />
+    ));
+
+  if (top) {
+    return ReactDOM.createPortal(cornerComponents, document.body);
+  }
+  return null;
+}
+
+function LeftRightCorner({ top, target }) {
   const { left, right } = target.getBoundingClientRect();
 
   return (
