@@ -28,14 +28,6 @@ export default function Layout({ children }) {
       {(ref) => (
         <div className={styles.layout}>
           <Cursor />
-          <Head>
-            <meta name="description" content="Lara Gabathuler" />
-            <link rel="icon" href="/favicon.ico" />
-            <link
-              href="https://use.typekit.net/qoh8unn.css"
-              rel="stylesheet"
-            ></link>
-          </Head>
           <header ref={ref} className={styles.header}>
             <nav>
               <Link href="/">
