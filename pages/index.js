@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/future/image";
 
 import CornerBoss from "../components/CornerBoss";
 import Content from "../components/Content";
@@ -16,8 +16,8 @@ export async function getStaticProps() {
   };
 }
 
-function loader({ src, quality }) {
-  return `/_next/image?url=${src}&w=1200&q=${quality || 75}`;
+function loader({ src, width, quality }) {
+  return `/_next/image?url=${src}&w=${width}&q=${quality || 75}`;
 }
 
 function Thumbnails({ projects }) {
@@ -39,8 +39,7 @@ function Thumbnails({ projects }) {
                   loader={loader}
                   alt={title}
                   src={cover}
-                  layout="fill"
-                  objectFit="cover"
+                  fill
                 />
               </Content>
             </a>

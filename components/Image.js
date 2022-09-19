@@ -1,4 +1,4 @@
-import NextImage from "next/image";
+import NextImage from "next/future/image";
 
 import styles from "../styles/Image.module.scss";
 import Content from "./Content";
@@ -17,9 +17,8 @@ export default function Image({ src, full, alt }) {
           className={styles.image}
           alt={alt}
           src={src}
-          layout="fill"
-          objectFit="cover"
           quality={100}
+          fill
         />
       </Content>
     </div>
