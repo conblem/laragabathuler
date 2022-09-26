@@ -1,6 +1,6 @@
 module.exports = {
   images: {
-    formats: ['image/avif', 'image/webp'],
+    formats: ['image/avif', 'image/webp']
   },
   swcMinify: true,
   webpack(config) {
@@ -9,11 +9,11 @@ module.exports = {
       oneOf: [
         {
           issuer: /\.(js|ts)x?$/,
-          use: ["@svgr/webpack"],
-        },
-      ],
+          use: ["@svgr/webpack"]
+        }
+      ]
     });
 
     return config;
-  },
+  }
 };
