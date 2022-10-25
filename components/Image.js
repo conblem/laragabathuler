@@ -9,6 +9,7 @@ export default function Image({ src, full, alt }) {
     : { aspectX: 1250, aspectY: 1485 };
 
   const className = full ? "is-full" : "is-half-desktop";
+  const sizes = full ? "100vw" : `(max-width: ${styles.desktop}) 100vw, 50vw`;
 
   return (
     <div className={`column ${className}`}>
@@ -19,6 +20,7 @@ export default function Image({ src, full, alt }) {
           src={src}
           quality={100}
           fill
+          sizes={sizes}
         />
       </Content>
     </div>

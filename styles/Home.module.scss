@@ -1,7 +1,13 @@
+@import "../node_modules/bulma/sass/utilities/initial-variables.sass";
 @import "./variables.scss";
 
 .image {
   border-radius: $borderRadius;
   height: auto;
   max-width: 100%;
+}
+
+
+:export {
+  desktop: $desktop
 }

@@ -21,6 +21,8 @@ function loader({ src, width, quality }) {
 }
 
 function Thumbnails({ projects }) {
+  const sizes = `(max-width: ${styles.desktop}) 100vw, 50vw`;
+
   return (
     <CornerBoss>
       {(ref1, ref2) =>
@@ -40,6 +42,8 @@ function Thumbnails({ projects }) {
                   alt={title}
                   src={cover}
                   fill
+                  sizes={sizes}
+                  priority={i == 0 || i == 1}
                 />
               </Content>
             </a>
