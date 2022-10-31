@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Head from "next/head";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 
@@ -23,6 +22,8 @@ function ActiveLink({ href, children, ...props }) {
 }
 
 export default function Layout({ children }) {
+  const currentYear = new Date().getFullYear();
+
   return (
     <TopProvider>
       {(ref) => (
@@ -46,7 +47,7 @@ export default function Layout({ children }) {
               Mail <Arrow />
             </a>
             <p className={styles.copyright}>
-              ©2021 Lara Gabathuler.
+              ©{currentYear} Lara Gabathuler.
               <br className="is-hidden-tablet" /> All rights reserved.
             </p>
           </footer>
