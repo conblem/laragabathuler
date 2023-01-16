@@ -14,7 +14,8 @@ export default function Maintenance() {
           spinner={false}
           alt="Site is under maintenance"
           full={true}
-          src="/Maintenance.png"
+          src="/maintenance.png"
+          quality={75}
         ></Image>
         <h2 className={styles.title}>Maintenance</h2>
       </div>
