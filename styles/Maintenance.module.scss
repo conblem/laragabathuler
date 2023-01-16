@@ -1,25 +1,31 @@
 @import "../node_modules/bulma/sass/utilities/mixins.sass";
 
 .container {
-    position: relative;
+  position: relative;
 }
 
 .title {
-    font-size: 5rem;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    mix-blend-mode: difference;
-    color: #462544;
+  font-size: 5rem;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  mix-blend-mode: difference;
+  color: #462544;
+}
+
+@include tablet-only {
+  .title {
+    font-size: 3.5rem;
+  }
 }
 
 @include mobile {
-    .title {
-        font-size: 3.5rem;
-    }
+  .title {
+    font-size: 1.75rem;
   }
+}

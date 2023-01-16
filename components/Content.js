@@ -3,21 +3,28 @@ import React from "react";
 import styles from "../styles/Content.module.scss";
 import Maske from "../public/maske.svg";
 
+function Spinner() {
+  return (
+    <div className={`${styles.cover} ${styles.center}`}>
+      <div className={styles.ring}>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  );
+}
+
 const Content = React.forwardRef(function Content(
-  { hover, children, aspectX, aspectY },
+  { hover, children, aspectX, aspectY, spinner = true },
   ref
 ) {
   const paddingTop = `calc(${aspectY} / ${aspectX} * 100%)`;
   return (
     <div style={{ paddingTop }} className={styles.content}>
-      <div className={`${styles.cover} ${styles.center}`}>
-        <div className={styles.ring}>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>
+      {spinner ? <Spinner /> : null}
+      <Spinner />
       <div ref={ref} className={styles.cover}>
         {children}
       </div>
