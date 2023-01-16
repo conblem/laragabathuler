@@ -1,4 +1,7 @@
 import Head from "next/head";
+import Image from "../components/Image";
+
+import styles from "../styles/Maintenance.module.scss";
 
 export default function Maintenance() {
   return (
@@ -6,7 +9,10 @@ export default function Maintenance() {
       <Head>
         <title>Maintenance</title>
       </Head>
-      <div>Maintenance {process.env.NEXT_PUBLIC_MAINTENANCE}</div>
+      <div className={styles.container}>
+        <Image full={true} src="/Maintenance.png"></Image>
+        <h2 className={styles.title}>Maintenance</h2>
+      </div>
     </>
   );
 }

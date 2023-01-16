@@ -40,7 +40,11 @@ function LaraGabathuler({ onClick, href }, ref) {
 
 function Title() {
   if (isMaintenance) {
-    return <LaraGabathuler />;
+    return (
+      <a>
+        <LaraGabathuler />
+      </a>
+    );
   }
   return (
     <Link href="/">
