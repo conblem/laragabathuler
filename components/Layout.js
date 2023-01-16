@@ -16,8 +16,8 @@ function ActiveLink({ href, children, ...props }) {
 
   const className = asPath == href ? styles.active : undefined;
   return (
-    <Link href={href} {...props}>
-      {children(className)}
+    <Link className={className} href={href} {...props}>
+      {children}
     </Link>
   );
 }
@@ -27,27 +27,23 @@ const isMaintenance = process.env.NEXT_PUBLIC_MAINTENANCE === "1";
 function AboutLink() {
   if (isMaintenance) return null;
 
-  return (
-    <ActiveLink href="/about">
-      {(active) => <a className={active}>About</a>}
-    </ActiveLink>
-  );
+  return <ActiveLink href="/about">About</ActiveLink>;
 }
 
-const LaraGabathuler = React.forwardRef(function LaraGabathuler({ onClick, href }, ref) {
+function LaraGabathuler({ onClick, href }, ref) {
   return (
-    <a href={href} onClick={onClick} ref={ref}>
+    <>
       Lara <span className={styles.lastName}>Gabathuler</span>
-    </a>
+    </>
   );
-});
+}
 
 function Title() {
   if (isMaintenance) {
     return <LaraGabathuler />;
   }
   return (
-    <Link href="/" passHref legacyBehavior>
+    <Link href="/">
       <LaraGabathuler />
     </Link>
   );
