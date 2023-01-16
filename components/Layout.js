@@ -34,9 +34,9 @@ function AboutLink() {
   );
 }
 
-const LaraGabathuler = React.forwardRef(function LaraGabathuler() {
+const LaraGabathuler = React.forwardRef(function LaraGabathuler({ onClick, href }, ref) {
   return (
-    <a>
+    <a href={href} onClick={onClick} ref={ref}>
       Lara <span className={styles.lastName}>Gabathuler</span>
     </a>
   );
