@@ -10,7 +10,7 @@ export default function Maintenance() {
         <title>Maintenance</title>
       </Head>
       <div className={styles.container}>
-        <Image full={true} src="/Maintenance.png"></Image>
+        <Image alt="Site is under maintenance" full={true} src="/Maintenance.png"></Image>
         <h2 className={styles.title}>Maintenance</h2>
       </div>
     </>
