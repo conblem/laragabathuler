@@ -24,7 +24,6 @@ const Content = React.forwardRef(function Content(
   return (
     <div style={{ paddingTop }} className={styles.content}>
       {spinner ? <Spinner /> : null}
-      <Spinner />
       <div ref={ref} className={styles.cover}>
         {children}
       </div>
