@@ -1,6 +1,7 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
+import React from "react";
 
 import { TopProvider } from "../components/CornerBoss";
 import Arrow from "../public/arrow.svg";
@@ -21,6 +22,37 @@ function ActiveLink({ href, children, ...props }) {
   );
 }
 
+const isMaintenance = process.env.NEXT_PUBLIC_MAINTENANCE === "1";
+
+function AboutLink() {
+  if (isMaintenance) return null;
+
+  return (
+    <ActiveLink href="/about">
+      {(active) => <a className={active}>About</a>}
+    </ActiveLink>
+  );
+}
+
+const LaraGabathuler = React.forwardRef(function LaraGabathuler() {
+  return (
+    <a>
+      Lara <span className={styles.lastName}>Gabathuler</span>
+    </a>
+  );
+});
+
+function Title() {
+  if (isMaintenance) {
+    return <LaraGabathuler />;
+  }
+  return (
+    <Link href="/" passHref legacyBehavior>
+      <LaraGabathuler />
+    </Link>
+  );
+}
+
 export default function Layout({ children }) {
   const currentYear = new Date().getFullYear();
 
@@ -31,14 +63,8 @@ export default function Layout({ children }) {
           <Cursor />
           <header ref={ref} className={styles.header}>
             <nav>
-              <Link href="/">
-                <a>
-                  Lara <span className={styles.lastName}>Gabathuler</span>
-                </a>
-              </Link>
-              <ActiveLink href="/about">
-                {(active) => <a className={active}>About</a>}
-              </ActiveLink>
+              <Title />
+              <AboutLink />
             </nav>
           </header>
           <main className={styles.children}>{children}</main>
