@@ -4,8 +4,8 @@ backend:
   branch: main
   base_url: https://www.laragabathuler.ch/
   auth_endpoint: api/auth
-media_folder: public/images
-public_folder: /images
+media_folder: public
+public_folder: /
 
 collections:
   - label: "Pages"
