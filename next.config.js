@@ -27,7 +27,7 @@ module.exports = withBundleAnalyzer({
     }
     return [
       {
-        source: "/((?!maintenance).*)",
+        source: "/",
         destination: "/maintenance",
         permanent: false,
       },
