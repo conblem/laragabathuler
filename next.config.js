@@ -22,13 +22,12 @@ module.exports = withBundleAnalyzer({
     return config;
   },
   redirects() {
-    // add the maintenance mode again
     if (process.env.NEXT_PUBLIC_MAINTENANCE !== "1") {
       return [];
     }
     return [
       {
-        source: "(^(?!\/maintenance$)(?!.*\.\w+$).*)",
+        source: "/((?!maintenance).*)",
         destination: "/maintenance",
         permanent: false,
       },
