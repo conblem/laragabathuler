@@ -27,7 +27,7 @@ module.exports = withBundleAnalyzer({
     }
     return [
       {
-        source: "/((?!maintenance).*)",
+        source: "/^(?!\/maintenance)(?!.*\.[a-zA-Z]{2,4}$).*",
         destination: "/maintenance",
         permanent: false,
       },
