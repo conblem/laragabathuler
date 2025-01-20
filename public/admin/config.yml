@@ -48,7 +48,7 @@ collections:
         widget: "string"
       - label: "Reihenfolge"
         name: "index"
-        widget: "string"
+        widget: "number"
       - label: "Titel"
         name: "title"
         widget: "string"
